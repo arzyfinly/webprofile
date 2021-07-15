@@ -18,8 +18,9 @@ class ItemControllerr extends Controller
         ->get();
         return view('item.index', compact('item'));
 
-    }
 
+
+    }
     /**
      * Show the form for creating a new resource.
      *
