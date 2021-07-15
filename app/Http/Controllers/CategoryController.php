@@ -11,14 +11,14 @@ class CategoryController extends Controller
     public function index()
     {
         $category = Category::all();
-        return view('index', compact('category'));
+        return view('category.index', compact('category'));
     }
 
 
     
     public function create()
     {
-        return view('create');
+        return view('category/create');
     }
     
     public function store(Request $request)
@@ -43,10 +43,10 @@ class CategoryController extends Controller
     }
     public function edit(Category $category)
     {
-        return view('edit', compact('category'));
+        return view('category/edit', compact('category'));
     }
 
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
         $this->validate($request, [
         'category_name'     => 'required',
@@ -54,7 +54,7 @@ class CategoryController extends Controller
         ]);
 
         //get data Blog by ID
-        $category = Category::findOrFail($category->id);
+        $category = Category::findOrFail($id);
 
 
         $category->update([
@@ -83,8 +83,5 @@ class CategoryController extends Controller
             return redirect('category')->with(['error' => 'Data Gagal Dihapus!']);
         }
     }
-
-
-
 
 }
